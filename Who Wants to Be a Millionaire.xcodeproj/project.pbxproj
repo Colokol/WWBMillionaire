@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3790CA4B2B8E7E7E00337C2C /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */; };
+		59C4BA9F2B8F8CF6000F8E2F /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */; };
+		59C4BAA22B8F8D17000F8E2F /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BAA12B8F8D17000F8E2F /* MockService.swift */; };
+		59C4BAA42B8F8D46000F8E2F /* Quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 59C4BAA32B8F8D46000F8E2F /* Quiz.json */; };
+		59C4BAA72B8F8D81000F8E2F /* Bundle + Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BAA62B8F8D81000F8E2F /* Bundle + Decodable.swift */; };
+		59C4BAA92B8F8DC0000F8E2F /* QuizManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BAA82B8F8DC0000F8E2F /* QuizManager.swift */; };
 		CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770F72B8C6FAB00670B8A /* AppDelegate.swift */; };
 		CE5770FA2B8C6FAB00670B8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770F92B8C6FAB00670B8A /* SceneDelegate.swift */; };
 		CE5770FC2B8C6FAB00670B8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770FB2B8C6FAB00670B8A /* MainScreenViewController.swift */; };
@@ -23,6 +28,11 @@
 
 /* Begin PBXFileReference section */
 		3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
+		59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		59C4BAA12B8F8D17000F8E2F /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		59C4BAA32B8F8D46000F8E2F /* Quiz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Quiz.json; sourceTree = "<group>"; };
+		59C4BAA62B8F8D81000F8E2F /* Bundle + Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + Decodable.swift"; sourceTree = "<group>"; };
+		59C4BAA82B8F8DC0000F8E2F /* QuizManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizManager.swift; sourceTree = "<group>"; };
 		CE5770F42B8C6FAB00670B8A /* Who Wants to Be a Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Who Wants to Be a Millionaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5770F72B8C6FAB00670B8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5770F92B8C6FAB00670B8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +59,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59C4BAA02B8F8D06000F8E2F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				59C4BAA12B8F8D17000F8E2F /* MockService.swift */,
+				59C4BAA82B8F8DC0000F8E2F /* QuizManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		59C4BAA52B8F8D62000F8E2F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				59C4BAA62B8F8D81000F8E2F /* Bundle + Decodable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CE5770EB2B8C6FAB00670B8A = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +95,8 @@
 		CE5770F62B8C6FAB00670B8A /* Who Wants to Be a Millionaire */ = {
 			isa = PBXGroup;
 			children = (
+				59C4BAA52B8F8D62000F8E2F /* Extensions */,
+				59C4BAA02B8F8D06000F8E2F /* Services */,
 				CE57710B2B8C709D00670B8A /* Application */,
 				CE5771192B8C71CB00670B8A /* Models */,
 				CE57711A2B8C71F800670B8A /* Modules */,
@@ -100,6 +129,7 @@
 			children = (
 				CE57710E2B8C710400670B8A /* Music */,
 				CE5771002B8C6FB100670B8A /* Assets.xcassets */,
+				59C4BAA32B8F8D46000F8E2F /* Quiz.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -120,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				CE57711B2B8C721000670B8A /* Model.swift */,
+				59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +224,7 @@
 			files = (
 				CE5771042B8C6FB100670B8A /* LaunchScreen.storyboard in Resources */,
 				CE5771012B8C6FB100670B8A /* Assets.xcassets in Resources */,
+				59C4BAA42B8F8D46000F8E2F /* Quiz.json in Resources */,
 				CE5771152B8C715500670B8A /* otvet-prinyat-teper-govorit-veduschiy.mp3 in Resources */,
 				CE5771162B8C715500670B8A /* zvuk-nepravilnogo-otveta.mp3 in Resources */,
 				CE5771142B8C715500670B8A /* zvuk-chasov-vo-vremya-igryi.mp3 in Resources */,
@@ -210,7 +242,11 @@
 			files = (
 				CE5770FC2B8C6FAB00670B8A /* MainScreenViewController.swift in Sources */,
 				3790CA4B2B8E7E7E00337C2C /* MainScreenVC.swift in Sources */,
+				59C4BAA22B8F8D17000F8E2F /* MockService.swift in Sources */,
+				59C4BAA72B8F8D81000F8E2F /* Bundle + Decodable.swift in Sources */,
 				CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */,
+				59C4BA9F2B8F8CF6000F8E2F /* QuestionModel.swift in Sources */,
+				59C4BAA92B8F8DC0000F8E2F /* QuizManager.swift in Sources */,
 				CE5770FA2B8C6FAB00670B8A /* SceneDelegate.swift in Sources */,
 				CE57711C2B8C721000670B8A /* Model.swift in Sources */,
 			);
