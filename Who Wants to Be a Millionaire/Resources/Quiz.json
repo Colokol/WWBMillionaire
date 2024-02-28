@@ -1,0 +1,181 @@
+[
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Entertainment: Music",
+        "question": "Who is the founder and leader of industrial rock band, &#039;Nine Inch Nails&#039;?",
+        "correct_answer": "Trent Reznor",
+        "incorrect_answers": [
+            "Marilyn Manson",
+            "Robin Finck",
+            "Josh Homme"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Entertainment: Music",
+        "question": "Which of these songs by Skrillex features Fatman Scoop as a side artist?",
+        "correct_answer": "Recess",
+        "incorrect_answers": [
+            "All is Fair in Love and Brostep",
+            "Rock N Roll (Will Take You to the Mountain)",
+            "Scary Monsters and Nice Sprites"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Science: Computers",
+        "question": "What is the name given to layer 4 of the Open Systems Interconnection (ISO) model?",
+        "correct_answer": "Transport",
+        "incorrect_answers": [
+            "Session",
+            "Data link",
+            "Network"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "General Knowledge",
+        "question": "What was the first ever London Underground line to be built?",
+        "correct_answer": "Metropolitan Line",
+        "incorrect_answers": [
+            "Circle Line",
+            "Bakerloo Line",
+            "Victoria Line"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Sports",
+        "question": "Which sport is NOT traditionally played during the Mongolian Naadam festival?",
+        "correct_answer": "American Football",
+        "incorrect_answers": [
+            "Wrestling",
+            "Archery",
+            "Horse-Racing"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "History",
+        "question": "Which King of England was faced with the Peasants&#039; Revolt in 1381?",
+        "correct_answer": "Richard II",
+        "incorrect_answers": [
+            "Edward III",
+            "Edward II",
+            "Henry IV"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "History",
+        "question": "When did Lithuania declare independence from the Soviet Union?",
+        "correct_answer": "March 11th, 1990",
+        "incorrect_answers": [
+            "December 25th, 1991",
+            "December 5th, 1991",
+            "April 20th, 1989"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Entertainment: Video Games",
+        "question": "In Overwatch, how old is Reinhardt Wilhelm?",
+        "correct_answer": "61",
+        "incorrect_answers": [
+            "59",
+            "65",
+            "62"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "History",
+        "question": "Which dictator killed the most people?",
+        "correct_answer": "Mao Zedong",
+        "incorrect_answers": [
+            "Joseph Stalin",
+            "Adolf Hitler",
+            "Kim Il Sung"
+        ]
+    },
+    {
+        "type": "boolean",
+        "difficulty": "medium",
+        "category": "Entertainment: Film",
+        "question": "The color of the pills in the Matrix were Blue and Yellow.",
+        "correct_answer": "False",
+        "incorrect_answers": [
+            "True"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Entertainment: Music",
+        "question": "When did The Beatles release the LP &quot;Please Please Me&quot;?",
+        "correct_answer": "1963",
+        "incorrect_answers": [
+            "1970",
+            "1960",
+            "1969"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Entertainment: Music",
+        "question": "What is the name of the song by Beyonc&eacute; and Alejandro Fern&aacute;ndez released in 2007?",
+        "correct_answer": "Amor Gitano",
+        "incorrect_answers": [
+            "La ultima vez",
+            "Rocket",
+            "Hasta Dondes Estes"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Science &amp; Nature",
+        "question": "The element involved in making human blood red is which of the following?",
+        "correct_answer": "Iron",
+        "incorrect_answers": [
+            "Copper",
+            "Iridium",
+            "Cobalt"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Geography",
+        "question": "Which of these countries is the smallest by population?",
+        "correct_answer": "Norway",
+        "incorrect_answers": [
+            "Slovakia",
+            "Finland",
+            "Hong Kong"
+        ]
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Entertainment: Film",
+        "question": "Who is the main protagonist in, the 1985 film, Back to the Future?",
+        "correct_answer": "Marty McFly",
+        "incorrect_answers": [
+            "Emmett &quot;Doc&quot; Brown",
+            "Biff Tannen",
+            "George McFly"
+        ]
+    }
+]
+
