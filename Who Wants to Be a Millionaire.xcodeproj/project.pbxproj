@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		564ED1AE2B8DF96500D1A796 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */; };
 		CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770F72B8C6FAB00670B8A /* AppDelegate.swift */; };
 		CE5770FA2B8C6FAB00670B8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770F92B8C6FAB00670B8A /* SceneDelegate.swift */; };
 		CE5770FC2B8C6FAB00670B8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770FB2B8C6FAB00670B8A /* MainScreenViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		CE5770F42B8C6FAB00670B8A /* Who Wants to Be a Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Who Wants to Be a Millionaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5770F72B8C6FAB00670B8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5770F92B8C6FAB00670B8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5770FB2B8C6FAB00670B8A /* MainScreenViewController.swift */,
+				564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */,
 				CE5770FA2B8C6FAB00670B8A /* SceneDelegate.swift in Sources */,
 				CE57711C2B8C721000670B8A /* Model.swift in Sources */,
+				564ED1AE2B8DF96500D1A796 /* GameResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
