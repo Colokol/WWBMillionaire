@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		564ED1AE2B8DF96500D1A796 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */; };
 		3790CA4B2B8E7E7E00337C2C /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */; };
+		4DA4C93E2B914E1A00F819BA /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C93D2B914E1A00F819BA /* Images.swift */; };
+		4DA4C9422B914E8F00F819BA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9412B914E8F00F819BA /* UIColor+Extension.swift */; };
+		4DA4C94C2B914F8700F819BA /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9462B914F8700F819BA /* QuestionViewController.swift */; };
+		4DA4C94D2B914F8700F819BA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9482B914F8700F819BA /* GameView.swift */; };
+		4DA4C94E2B914F8700F819BA /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9492B914F8700F819BA /* TimerView.swift */; };
+		4DA4C94F2B914F8700F819BA /* AnswersStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C94A2B914F8700F819BA /* AnswersStack.swift */; };
+		4DA4C9502B914F8700F819BA /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C94B2B914F8700F819BA /* HelpButton.swift */; };
+		564ED1AE2B8DF96500D1A796 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */; };
 		59C4BA9F2B8F8CF6000F8E2F /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */; };
 		59C4BAA22B8F8D17000F8E2F /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BAA12B8F8D17000F8E2F /* MockService.swift */; };
 		59C4BAA42B8F8D46000F8E2F /* Quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 59C4BAA32B8F8D46000F8E2F /* Quiz.json */; };
@@ -28,8 +35,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
+		4DA4C93D2B914E1A00F819BA /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		4DA4C9412B914E8F00F819BA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		4DA4C9462B914F8700F819BA /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		4DA4C9482B914F8700F819BA /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		4DA4C9492B914F8700F819BA /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		4DA4C94A2B914F8700F819BA /* AnswersStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersStack.swift; sourceTree = "<group>"; };
+		4DA4C94B2B914F8700F819BA /* HelpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
+		564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		59C4BAA12B8F8D17000F8E2F /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		59C4BAA32B8F8D46000F8E2F /* Quiz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Quiz.json; sourceTree = "<group>"; };
@@ -61,6 +75,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DA4C9452B914F8700F819BA /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				4DA4C9462B914F8700F819BA /* QuestionViewController.swift */,
+				4DA4C9472B914F8700F819BA /* Views */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		4DA4C9472B914F8700F819BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4DA4C9482B914F8700F819BA /* GameView.swift */,
+				4DA4C9492B914F8700F819BA /* TimerView.swift */,
+				4DA4C94A2B914F8700F819BA /* AnswersStack.swift */,
+				4DA4C94B2B914F8700F819BA /* HelpButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		59C4BAA02B8F8D06000F8E2F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +107,7 @@
 		59C4BAA52B8F8D62000F8E2F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4DA4C9412B914E8F00F819BA /* UIColor+Extension.swift */,
 				59C4BAA62B8F8D81000F8E2F /* Bundle + Decodable.swift */,
 			);
 			path = Extensions;
@@ -129,6 +164,7 @@
 		CE57710D2B8C70ED00670B8A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4DA4C93D2B914E1A00F819BA /* Images.swift */,
 				CE57710E2B8C710400670B8A /* Music */,
 				CE5771002B8C6FB100670B8A /* Assets.xcassets */,
 				59C4BAA32B8F8D46000F8E2F /* Quiz.json */,
@@ -160,6 +196,7 @@
 		CE57711A2B8C71F800670B8A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4DA4C9452B914F8700F819BA /* Game */,
 				CE5770FB2B8C6FAB00670B8A /* MainScreenViewController.swift */,
 				564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */,
 				3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */,
@@ -243,10 +280,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA4C9502B914F8700F819BA /* HelpButton.swift in Sources */,
+				4DA4C94E2B914F8700F819BA /* TimerView.swift in Sources */,
 				CE5770FC2B8C6FAB00670B8A /* MainScreenViewController.swift in Sources */,
 				3790CA4B2B8E7E7E00337C2C /* MainScreenVC.swift in Sources */,
 				59C4BAA22B8F8D17000F8E2F /* MockService.swift in Sources */,
+				4DA4C9422B914E8F00F819BA /* UIColor+Extension.swift in Sources */,
+				4DA4C93E2B914E1A00F819BA /* Images.swift in Sources */,
+				4DA4C94F2B914F8700F819BA /* AnswersStack.swift in Sources */,
 				59C4BAA72B8F8D81000F8E2F /* Bundle + Decodable.swift in Sources */,
+				4DA4C94D2B914F8700F819BA /* GameView.swift in Sources */,
+				4DA4C94C2B914F8700F819BA /* QuestionViewController.swift in Sources */,
 				CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */,
 				59C4BA9F2B8F8CF6000F8E2F /* QuestionModel.swift in Sources */,
 				59C4BAA92B8F8DC0000F8E2F /* QuizManager.swift in Sources */,

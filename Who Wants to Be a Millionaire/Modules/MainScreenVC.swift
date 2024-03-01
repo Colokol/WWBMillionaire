@@ -164,10 +164,11 @@ final class MainScreenVC: UIViewController {
     }
     
     @objc private func newGameBtnTapped() {
-        //new game logic
-        print("new game")
+        let gameViewController = QuestionViewController()
+        gameViewController.modalPresentationStyle = .fullScreen
+        present(gameViewController, animated: true)
     }
-    
+
 }
 
 //MARK: - Constraints
