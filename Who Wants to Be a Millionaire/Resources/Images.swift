@@ -14,6 +14,7 @@ enum GameImages: String {
     case correctAnswer = "correctAnswer"
     case wrongAnswer = "wrongAnswer"
     case helpEllipse = "helpEllipse"
+    case coin = "coin"
 
     func gameImage() -> UIImage {
         UIImage(named: self.rawValue) ?? UIImage()

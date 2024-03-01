@@ -163,14 +163,14 @@ final class MainScreenVC: UIViewController {
         print("continue game")
     }
     
+    let quizManager = QuizManager()
+    let mockManager = MockService.shared
+    private lazy var gameViewController = QuestionViewController(
+        quizManager: quizManager,
+        dataManager: mockManager
+    )
+
     @objc private func newGameBtnTapped() {
-        let quizManager = QuizManager()
-        let mockManager = MockService.shared
-        let gameViewController = QuestionViewController(
-            quizManager: quizManager,
-            dataManager: mockManager
-        )
-        
         gameViewController.modalPresentationStyle = .fullScreen
         present(gameViewController, animated: true)
     }

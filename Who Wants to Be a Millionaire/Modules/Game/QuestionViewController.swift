@@ -40,11 +40,11 @@ final class QuestionViewController: UIViewController {
         }
         
         setupGameView()
-        
+        gameView.coinButton.addTarget(self, action: #selector(finishGame), for: .touchUpInside)
         gameView.onHelpButtonTapped = { [weak self] (_ button: HelpButton) -> () in
             guard let self else { return }
             self.helpAvailibility[button] = false
-            self.helpButtonAction()
+            self.helpButtonAction(button)
         }
         
         gameView.onCheckAnswer = {[weak self] (_ index: Int) -> () in
@@ -71,7 +71,8 @@ final class QuestionViewController: UIViewController {
         
         makeTimer()
     }
-    
+
+
     private func makeTimer() {
         timer?.invalidate()
         
@@ -91,6 +92,8 @@ final class QuestionViewController: UIViewController {
         if timerStop > 0 {
             timerStop -= 1
             gameView.timer.seconds = timerStop
+        } else {
+            gameView.answersStack.disableAll()
         }
     }
     
@@ -104,14 +107,34 @@ final class QuestionViewController: UIViewController {
         )
     }
     
-    // MARK: Selector methods
-    
-    @objc func helpButtonAction() {
-        // help button logic
+    // MARK: Logic methods
+
+    private func helpButtonAction(_ button: HelpButton) {
+        switch button {
+        case .fiftyFifty:
+            let (firstExclude, secondExclude) = fiftyFiftyHelpLogic()
+            gameView.answersStack.fiftyFiftyHelp(firstIndex: firstExclude, secondIndex: secondExclude)
+        case .audience:
+            audienceHelpLogic()
+        case .call:
+            callHelpLogic()
+        }
     }
-    
-    @objc func checkAnswer(buttonIndex: Int) {
-        // answers check logic
+
+    private func fiftyFiftyHelpLogic() -> (Int, Int) {
+        //some logic
+        return (0, 2)
+    }
+
+    private func audienceHelpLogic() {
+        //some logic
+    }
+
+    private func callHelpLogic() {
+        //some logic
+    }
+
+    func checkAnswer(buttonIndex: Int) {
         let correctAnswer = quizManager.checkAnswer(
             by: buttonIndex,
             with: models[currentQuestionIndex]
@@ -119,13 +142,26 @@ final class QuestionViewController: UIViewController {
         
         gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
         gameView.answersStack.disableAll(except: buttonIndex)
-        
-        if correctAnswer {
-            quizManager.saveSum(with: models[currentQuestionIndex])
-            currentQuestionIndex += 1
-            
-            gameView.updateView(with: models[currentQuestionIndex])
-            makeTimer()
+        DispatchQueue.global().async {[weak self] in
+            guard let self else { return }
+            sleep(1)
+            DispatchQueue.main.async {
+                if correctAnswer {
+                    self.quizManager.saveSum(with: self.models[self.currentQuestionIndex])
+                    self.currentQuestionIndex += 1
+
+                    self.gameView.updateView(with: self.models[self.currentQuestionIndex])
+                    self.makeTimer()
+                } else {
+                    self.finishGame()
+                }
+            }
         }
+    }
+
+    // MARK: Selector methods
+
+    @objc func finishGame() {
+        dismiss(animated: true)
     }
 }

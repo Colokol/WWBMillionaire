@@ -40,9 +40,13 @@ final class AnswersStack: UIStackView {
 
     func fiftyFiftyHelp(firstIndex: Int, secondIndex: Int) {
         let firstAnswer = arrangedSubviews[firstIndex] as? AnswerVariant
+        firstAnswer?.letterLabel.textColor = .answerVariantWithAlpha
         firstAnswer?.answerLabel.text = ""
+        firstAnswer?.isEnabled = false
         let secondAnswer = arrangedSubviews[secondIndex] as? AnswerVariant
+        secondAnswer?.letterLabel.textColor = .answerVariantWithAlpha
         secondAnswer?.answerLabel.text = ""
+        secondAnswer?.isEnabled = false
     }
 
     func changeAnswerColor(index: Int, correctAnswer: Bool) {
@@ -54,12 +58,16 @@ final class AnswersStack: UIStackView {
         answer?.setBackgroundImage(backgroundImage, for: .normal)
     }
 
-    func disableAll(except excludeIndex: Int) {
+    func disableAll(except index: Int? = nil) {
+        let excludeIndex = index ?? -1
         for index in 0...3 where index != excludeIndex {
             let answer = arrangedSubviews[index] as? AnswerVariant
             answer?.isEnabled = false
+            answer?.letterLabel.textColor = .answerVariantWithAlpha
+            answer?.answerLabel.textColor = .whiteWithAlpha
         }
     }
+
 }
 
 ///Конфигурация кнопок вариантов ответов

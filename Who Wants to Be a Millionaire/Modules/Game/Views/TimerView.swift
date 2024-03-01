@@ -48,18 +48,21 @@ final class TimerView: UIStackView {
     override func layoutSubviews() {
         self.secondsLabel.text = "\(self.seconds)"
         
-        if self.seconds <= 15 {
-            backgroundColor = .orangeWithAlpha
-            clockImage.tintColor = .orangeGame
-            secondsLabel.textColor = .orangeGame
-        } else if self.seconds <= 5 {
+        switch seconds {
+        case 0...5:
             backgroundColor = .redWithAlpha
             clockImage.tintColor = .redGame
             secondsLabel.textColor = .redGame
-        } else {
+        case 6...15:
+            backgroundColor = .orangeWithAlpha
+            clockImage.tintColor = .orangeGame
+            secondsLabel.textColor = .orangeGame
+        case 16...29:
             backgroundColor = .whiteWithAlpha
             clockImage.tintColor = .whiteGame
             secondsLabel.textColor = .whiteGame
+        default:
+            break
         }
     }
 
