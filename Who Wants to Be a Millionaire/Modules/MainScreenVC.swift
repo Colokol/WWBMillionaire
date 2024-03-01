@@ -164,7 +164,13 @@ final class MainScreenVC: UIViewController {
     }
     
     @objc private func newGameBtnTapped() {
-        let gameViewController = QuestionViewController()
+        let quizManager = QuizManager()
+        let mockManager = MockService.shared
+        let gameViewController = QuestionViewController(
+            quizManager: quizManager,
+            dataManager: mockManager
+        )
+        
         gameViewController.modalPresentationStyle = .fullScreen
         present(gameViewController, animated: true)
     }

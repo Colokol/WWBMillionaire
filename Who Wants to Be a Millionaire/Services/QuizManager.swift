@@ -19,10 +19,10 @@ protocol IQuizManager {
     
     /// Проверяет верность ответа
     /// - Parameters:
-    ///   - answer: ответ пользователя
+    ///   - index: индекс кнопки нажатой пользователем
     ///   - model: модель данных
     /// - Returns: верность ответа
-    func check(answer: String, with model: Question.ViewModel) -> Bool
+    func checkAnswer(by index: Int, with model: Question.ViewModel) -> Bool
     
     /// Обновляет несгораемую сумму
     /// - Parameter model: модель данных
@@ -55,8 +55,8 @@ final class QuizManager: IQuizManager {
         return amounts[index]
     }
     
-    func check(answer: String, with model: Question.ViewModel) -> Bool {
-        return answer == model.correctAnswer
+    func checkAnswer(by index: Int, with model: Question.ViewModel) -> Bool {
+        return model.allAnswers.firstIndex(of: model.correctAnswer) == index
     }
     
     func saveSum(with model: Question.ViewModel) {
