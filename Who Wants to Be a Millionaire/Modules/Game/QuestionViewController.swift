@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import MediaPlayer
 
 final class QuestionViewController: UIViewController {
     
     private var timer: Timer?
-    
-    var timerStop = 29
+    private var timerStop = 29
+
+    let sound = Sound.shared
     
     var helpAvailibility: [HelpButton:Bool] = [
         HelpButton.fiftyFifty: true,
@@ -51,7 +53,6 @@ final class QuestionViewController: UIViewController {
             guard let self else { return }
             self.checkAnswer(buttonIndex: index)
         }
-        
     }
     
     required init?(coder: NSCoder) {
@@ -62,14 +63,16 @@ final class QuestionViewController: UIViewController {
     
     override func loadView() {
         view = gameView
-        
     }
-    
-    // Temporary timer
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         makeTimer()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        sound.play(.thinking)
     }
 
 
@@ -139,29 +142,36 @@ final class QuestionViewController: UIViewController {
             by: buttonIndex,
             with: models[currentQuestionIndex]
         )
-        
-        gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
+        sound.play(.accepted)
         gameView.answersStack.disableAll(except: buttonIndex)
-        DispatchQueue.global().async {[weak self] in
+        sleep(5)
+        self.gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
+        DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            sleep(1)
-            DispatchQueue.main.async {
-                if correctAnswer {
+            if correctAnswer {
+                if currentQuestionIndex == 14 {
+                    sound.play(.win)
+                    dismiss(animated: true)
+                } else {
+                    sound.play(.correctAnswer)
                     self.quizManager.saveSum(with: self.models[self.currentQuestionIndex])
                     self.currentQuestionIndex += 1
-
-                    self.gameView.updateView(with: self.models[self.currentQuestionIndex])
-                    self.makeTimer()
-                } else {
-                    self.finishGame()
                 }
+                self.gameView.updateView(with: self.models[self.currentQuestionIndex])
+                self.makeTimer()
+            } else {
+                sound.play(.wrongAnswer)
+                sleep(1)
+                self.finishGame()
             }
+            sleep(3)
         }
     }
 
     // MARK: Selector methods
 
     @objc func finishGame() {
+        sound.stop()
         dismiss(animated: true)
     }
 }

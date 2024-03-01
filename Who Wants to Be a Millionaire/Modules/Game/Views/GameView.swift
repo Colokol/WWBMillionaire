@@ -26,6 +26,8 @@ final class GameView: UIView {
         $0.backgroundColor = .clear
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.textAlignment = .center
+        $0.isUserInteractionEnabled = false
+        $0.isScrollEnabled = true
         return $0
     }(UITextView())
 
