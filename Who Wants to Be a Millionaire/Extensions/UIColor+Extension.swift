@@ -31,6 +31,7 @@ extension UIColor {
     static var redGame = UIColor(hex: "FF6231")
     static var redWithAlpha = UIColor(hex: "832203").withAlphaComponent(0.5)
     static var answerVariant = UIColor(hex: "E19B30")
+    static var answerVariantWithAlpha = UIColor(hex: "E19B30").withAlphaComponent(0.5)
 
 
 }

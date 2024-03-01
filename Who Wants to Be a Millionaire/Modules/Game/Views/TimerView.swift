@@ -9,16 +9,8 @@ import UIKit
 
 final class TimerView: UIStackView {
 
-    var seconds = 29 {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                self.setNeedsLayout()
-                self.layoutIfNeeded()
-            }
-        }
-    }
-
+    var seconds = 29 { didSet { setNeedsLayout() } }
+    
     private let clockImage = UIImageView(image: GameImages.SF.timer.symbol(ofSize: 24))
     private var secondsLabel = UILabel()
 
@@ -26,18 +18,14 @@ final class TimerView: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .whiteWithAlpha
         layer.cornerRadius = 20
         axis = .horizontal
         spacing = 2.5
 
         secondsLabel.text = "29"
-        secondsLabel.textColor = .whiteGame
         secondsLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         secondsLabel.textAlignment = .right
 
-        clockImage.tintColor = .whiteGame
-        
         layoutMargins = UIEdgeInsets(top: 10.5, left: 16, bottom: 10.5, right: 16)
         isLayoutMarginsRelativeArrangement = true
 
@@ -59,14 +47,22 @@ final class TimerView: UIStackView {
 
     override func layoutSubviews() {
         self.secondsLabel.text = "\(self.seconds)"
-        if self.seconds == 15 {
-            backgroundColor = .orangeWithAlpha
-            clockImage.tintColor = .orangeGame
-            secondsLabel.textColor = .orangeGame
-        } else if self.seconds == 5 {
+        
+        switch seconds {
+        case 0...5:
             backgroundColor = .redWithAlpha
             clockImage.tintColor = .redGame
             secondsLabel.textColor = .redGame
+        case 6...15:
+            backgroundColor = .orangeWithAlpha
+            clockImage.tintColor = .orangeGame
+            secondsLabel.textColor = .orangeGame
+        case 16...29:
+            backgroundColor = .whiteWithAlpha
+            clockImage.tintColor = .whiteGame
+            secondsLabel.textColor = .whiteGame
+        default:
+            break
         }
     }
 

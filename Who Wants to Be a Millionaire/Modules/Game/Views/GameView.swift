@@ -16,6 +16,11 @@ final class GameView: UIView {
 
     let timer = TimerView()
 
+    let coinButton: UIButton = {
+        $0.setBackgroundImage(GameImages.coin.gameImage(), for: .normal)
+        return $0
+    }(UIButton())
+
     private let questionLabel: UITextView = {
         $0.textColor = .white
         $0.backgroundColor = .clear
@@ -24,7 +29,7 @@ final class GameView: UIView {
         return $0
     }(UITextView())
 
-    lazy var answersStack = AnswersStack(answers: answers)
+    var answersStack: AnswersStack!
 
     var onHelpButtonTapped: ((HelpButton) -> ())?
     var onCheckAnswer: ((Int) -> ())?
@@ -40,17 +45,15 @@ final class GameView: UIView {
         return $0
     }(UIStackView())
 
-    private var answers = [String]()
-
     // MARK: Initialization
 
     init(question: String,
          answers: [String],
          helpAvailibility: [HelpButton: Bool]) {
         self.helpAvailibility = helpAvailibility
-        self.answers = answers
         super.init(frame: CGRect.zero)
         questionLabel.text = question
+        answersStack = AnswersStack(answers: answers)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,6 +67,21 @@ final class GameView: UIView {
         configureAnswersStack()
         setSubview()
         setConstraints()
+    }
+    
+    func updateView(with model: Question.ViewModel) {
+        subviews.forEach { view in
+            if view === answersStack {
+                view.removeFromSuperview()
+            }
+        }
+        questionLabel.text = model.question
+        
+        answersStack = AnswersStack(answers: model.allAnswers)
+        answersStack.translatesAutoresizingMaskIntoConstraints = false
+        configureAnswersStack()
+        addSubview(answersStack)
+        timer.seconds = 29
     }
 
     private func configureButtonStack() {
@@ -83,7 +101,7 @@ final class GameView: UIView {
     }
 
     private func setSubview() {
-        [backgroundImage, timer, questionLabel, answersStack, buttonsStack].forEach {
+        [backgroundImage, timer, questionLabel, answersStack, buttonsStack,coinButton].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -100,7 +118,12 @@ final class GameView: UIView {
             timer.widthAnchor.constraint(equalToConstant: 91),
             timer.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            questionLabel.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 32),
+            coinButton.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 16),
+            coinButton.heightAnchor.constraint(equalToConstant: 64),
+            coinButton.widthAnchor.constraint(equalToConstant: 64),
+            coinButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            questionLabel.topAnchor.constraint(equalTo: coinButton.bottomAnchor, constant: 32),
             questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             questionLabel.heightAnchor.constraint(equalToConstant: 147),
