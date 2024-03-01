@@ -8,6 +8,9 @@
 import UIKit
 
 final class QuestionViewController: UIViewController {
+    
+    private var timer: Timer?
+    
     var timerStop = 29
     
     var helpAvailibility: [HelpButton:Bool] = [
@@ -64,13 +67,30 @@ final class QuestionViewController: UIViewController {
     
     // Temporary timer
     override func viewDidLoad() {
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            while self.timerStop > 0 {
-                sleep(1)
-                self.timerStop -= 1
-                self.gameView.timer.seconds = timerStop
-            }
+        super.viewDidLoad()
+        
+        makeTimer()
+    }
+    
+    private func makeTimer() {
+        timer?.invalidate()
+        
+        timerStop = 29
+        gameView.timer.seconds = timerStop
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(resetTimer),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    
+    @objc private func resetTimer() {
+        if timerStop > 0 {
+            timerStop -= 1
+            gameView.timer.seconds = timerStop
         }
     }
     
@@ -97,15 +117,15 @@ final class QuestionViewController: UIViewController {
             with: models[currentQuestionIndex]
         )
         
-        if correctAnswer {
-            quizManager.saveSum(with: models[currentQuestionIndex])
-        }
-        
-        // Temporary:
         gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
         gameView.answersStack.disableAll(except: buttonIndex)
         
-        currentQuestionIndex += 1
-        
+        if correctAnswer {
+            quizManager.saveSum(with: models[currentQuestionIndex])
+            currentQuestionIndex += 1
+            
+            gameView.updateView(with: models[currentQuestionIndex])
+            makeTimer()
+        }
     }
 }

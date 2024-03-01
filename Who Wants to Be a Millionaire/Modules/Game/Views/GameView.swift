@@ -24,7 +24,7 @@ final class GameView: UIView {
         return $0
     }(UITextView())
 
-    lazy var answersStack = AnswersStack(answers: answers)
+    var answersStack: AnswersStack!
 
     var onHelpButtonTapped: ((HelpButton) -> ())?
     var onCheckAnswer: ((Int) -> ())?
@@ -40,17 +40,15 @@ final class GameView: UIView {
         return $0
     }(UIStackView())
 
-    private var answers = [String]()
-
     // MARK: Initialization
 
     init(question: String,
          answers: [String],
          helpAvailibility: [HelpButton: Bool]) {
         self.helpAvailibility = helpAvailibility
-        self.answers = answers
         super.init(frame: CGRect.zero)
         questionLabel.text = question
+        answersStack = AnswersStack(answers: answers)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,6 +62,20 @@ final class GameView: UIView {
         configureAnswersStack()
         setSubview()
         setConstraints()
+    }
+    
+    func updateView(with model: Question.ViewModel) {
+        subviews.forEach { view in
+            if view === answersStack {
+                view.removeFromSuperview()
+            }
+        }
+        questionLabel.text = model.question
+        
+        answersStack = AnswersStack(answers: model.allAnswers)
+        answersStack.translatesAutoresizingMaskIntoConstraints = false
+        configureAnswersStack()
+        addSubview(answersStack)
     }
 
     private func configureButtonStack() {
