@@ -28,7 +28,7 @@ class LevelsViewController: UIViewController, UITableViewDataSource, UITableView
     }()
     
     private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Background"))
+        let imageView = UIImageView(image: UIImage(named: "background"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
