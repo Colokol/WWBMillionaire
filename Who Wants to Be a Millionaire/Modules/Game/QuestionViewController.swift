@@ -138,16 +138,52 @@ final class QuestionViewController: UIViewController {
     }
 
     private func fiftyFiftyHelpLogic() -> (Int, Int) {
-        //some logic
-        return (0, 2)
+        let model = models[currentQuestionIndex]
+        let answers = model.allAnswers
+        let correctAnswer = model.correctAnswer
+        let firstIndex = answers.firstIndex { $0 != correctAnswer }!
+        let secondIndex = answers.lastIndex { $0 != correctAnswer }!
+        
+        return (firstIndex, secondIndex)
     }
 
     private func audienceHelpLogic() {
-        //some logic
+        let model = models[currentQuestionIndex]
+        var answer = model.correctAnswer
+        
+        let randomNumber = Int.random(in: 0...99)
+        
+        if randomNumber > 70 {
+            let incorrectAnswers = model.allAnswers.filter { $0 != answer }
+            answer = incorrectAnswers.randomElement() ?? ""
+        }
+        showAlert(withTitle: "Ответ зала", andMessage: answer)
     }
 
     private func callHelpLogic() {
-        //some logic
+        let model = models[currentQuestionIndex]
+        var answer = model.correctAnswer
+        
+        let randomNumber = Int.random(in: 0...99)
+        
+        if randomNumber > 80 {
+            let incorrectAnswers = model.allAnswers.filter { $0 != answer }
+            answer = incorrectAnswers.randomElement() ?? ""
+        }
+        showAlert(withTitle: "Ответ друга", andMessage: answer)
+    }
+    
+    private func showAlert(withTitle title: String, andMessage message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 
     func checkAnswer(buttonIndex: Int) {
