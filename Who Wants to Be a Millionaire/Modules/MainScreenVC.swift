@@ -14,6 +14,13 @@ final class MainScreenVC: UIViewController {
     let rulesBtnSize: CGFloat = 32
     var bestSumLabelValue: Int = 15000
     
+    let quizManager = QuizManager()
+    let mockManager = MockService.shared
+    private lazy var gameViewController = QuestionViewController(
+        quizManager: quizManager,
+        dataManager: mockManager
+    )
+    
     //MARK: - UI Elements
     
     private lazy var background: UIImageView = {
@@ -102,16 +109,16 @@ final class MainScreenVC: UIViewController {
     private lazy var continueGameBtn = UIButton(bgImage: UIImage.orgbtn, name: "Continue game", target: self, action: #selector(continueBtnTapped))
     private lazy var newGameBtn = UIButton(bgImage: UIImage.blubtn, name: "New Game", target: self, action: #selector(newGameBtnTapped))
     
-    private lazy var teamLabel: UILabel = {
-        let element = UILabel()
-        element.text = "Team #2 by DevRush XI"
-        element.font = .boldSystemFont(ofSize: 12)
-        element.textColor = .white
-        element.textAlignment = .center
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
+    private lazy var teamButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("© Team #2 by DevRush XI", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(devButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,7 +156,7 @@ final class MainScreenVC: UIViewController {
         
         view.addSubview(continueGameBtn)
         view.addSubview(newGameBtn)
-        view.addSubview(teamLabel)
+        view.addSubview(teamButton)
     }
     
     //MARK: - @Objc Methods
@@ -163,16 +170,16 @@ final class MainScreenVC: UIViewController {
         print("continue game")
     }
     
-    let quizManager = QuizManager()
-    let mockManager = MockService.shared
-    private lazy var gameViewController = QuestionViewController(
-        quizManager: quizManager,
-        dataManager: mockManager
-    )
-
     @objc private func newGameBtnTapped() {
         gameViewController.modalPresentationStyle = .fullScreen
         present(gameViewController, animated: true)
+    }
+    
+    @objc private func devButtonTapped() {
+        let modalVC = DevelopersViewController()
+        let navigationController = UINavigationController(rootViewController: modalVC)
+        navigationController.modalPresentationStyle = .pageSheet
+        present(navigationController, animated: true, completion: nil)
     }
 
 }
@@ -207,11 +214,11 @@ private extension MainScreenVC {
             
             newGameBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: spacing * 2),
             newGameBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -spacing * 2),
-            newGameBtn.bottomAnchor.constraint(equalTo: teamLabel.topAnchor, constant: -spacing * 3),
+            newGameBtn.bottomAnchor.constraint(equalTo: teamButton.topAnchor, constant: -spacing * 3),
             newGameBtn.heightAnchor.constraint(equalToConstant: view.frame.height / 12),
             
-            teamLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            teamLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+           teamButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
