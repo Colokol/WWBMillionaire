@@ -219,6 +219,7 @@ private extension MainScreenVC {
             
            teamButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
            teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+
         ])
     }
 }
