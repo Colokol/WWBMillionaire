@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0412D6762B92558E000C9CF8 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412D6742B92558E000C9CF8 /* LevelsViewController.swift */; };
 		0412D6772B92558E000C9CF8 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412D6752B92558E000C9CF8 /* CustomCell.swift */; };
-		0412D6792B92C564000C9CF8 /* DevelopersModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412D6782B92C564000C9CF8 /* DevelopersModalViewController.swift */; };
 		3790CA4B2B8E7E7E00337C2C /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */; };
 		3795D01F2B93710E00BE8405 /* DevelopersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795D01E2B93710E00BE8405 /* DevelopersViewController.swift */; };
 		4DA4C93E2B914E1A00F819BA /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C93D2B914E1A00F819BA /* Images.swift */; };
@@ -41,7 +40,6 @@
 /* Begin PBXFileReference section */
 		0412D6742B92558E000C9CF8 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		0412D6752B92558E000C9CF8 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		0412D6782B92C564000C9CF8 /* DevelopersModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersModalViewController.swift; sourceTree = "<group>"; };
 		3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
 		3795D01E2B93710E00BE8405 /* DevelopersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersViewController.swift; sourceTree = "<group>"; };
 		4DA4C93D2B914E1A00F819BA /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 				564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */,
 				3790CA4A2B8E7E7E00337C2C /* MainScreenVC.swift */,
 				3795D01E2B93710E00BE8405 /* DevelopersViewController.swift */,
-				0412D6782B92C564000C9CF8 /* DevelopersModalViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -311,7 +308,6 @@
 				0412D6772B92558E000C9CF8 /* CustomCell.swift in Sources */,
 				59C4BAA72B8F8D81000F8E2F /* Bundle + Decodable.swift in Sources */,
 				0412D6762B92558E000C9CF8 /* LevelsViewController.swift in Sources */,
-				0412D6792B92C564000C9CF8 /* DevelopersModalViewController.swift in Sources */,
 				4DA4C94D2B914F8700F819BA /* GameView.swift in Sources */,
 				4DA4C94C2B914F8700F819BA /* QuestionViewController.swift in Sources */,
 				CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */,
