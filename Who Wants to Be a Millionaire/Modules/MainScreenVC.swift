@@ -14,6 +14,13 @@ final class MainScreenVC: UIViewController {
     let rulesBtnSize: CGFloat = 32
     var bestSumLabelValue: Int = 15000
     
+    let quizManager = QuizManager()
+    let mockManager = MockService.shared
+    private lazy var gameViewController = QuestionViewController(
+        quizManager: quizManager,
+        dataManager: mockManager
+    )
+    
     //MARK: - UI Elements
     
     private lazy var background: UIImageView = {
@@ -108,11 +115,10 @@ final class MainScreenVC: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .clear
-        button.addTarget(self, action: #selector(showModal), for: .touchUpInside)
+        button.addTarget(self, action: #selector(devButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,20 +170,13 @@ final class MainScreenVC: UIViewController {
         print("continue game")
     }
     
-    let quizManager = QuizManager()
-    let mockManager = MockService.shared
-    private lazy var gameViewController = QuestionViewController(
-        quizManager: quizManager,
-        dataManager: mockManager
-    )
-
     @objc private func newGameBtnTapped() {
         gameViewController.modalPresentationStyle = .fullScreen
         present(gameViewController, animated: true)
     }
     
-    @objc private func showModal() {
-        let modalVC = DevelopersModalViewController()
+    @objc private func devButtonTapped() {
+        let modalVC = DevelopersViewController()
         let navigationController = UINavigationController(rootViewController: modalVC)
         navigationController.modalPresentationStyle = .pageSheet
         present(navigationController, animated: true, completion: nil)
@@ -218,8 +217,9 @@ private extension MainScreenVC {
             newGameBtn.bottomAnchor.constraint(equalTo: teamButton.topAnchor, constant: -spacing * 3),
             newGameBtn.heightAnchor.constraint(equalToConstant: view.frame.height / 12),
             
-            teamButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+           teamButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+
         ])
     }
 }
