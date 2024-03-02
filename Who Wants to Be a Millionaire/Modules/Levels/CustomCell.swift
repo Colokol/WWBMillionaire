@@ -82,7 +82,7 @@ class MoneyLevelCell: UITableViewCell {
     // MARK: - Methods
     
     // Метод для конфигурации ячейки
-    func configureCell(level: Int, amount: String) {
+    func configureCell(level: Int, amount: String, prizeLevel: Int) {
         levelLabel.text = "\(level):"
         amountLabel.text = amount
         
@@ -100,6 +100,11 @@ class MoneyLevelCell: UITableViewCell {
             backgroundImageName = regularBackground
         }
         backgroundCellImageView.image = UIImage(named: backgroundImageName)
+        if prizeLevel == level {
+            backgroundCellImageView.image = GameImages.currentLevel.gameImage()
+        }
     }
+
+
 }
 

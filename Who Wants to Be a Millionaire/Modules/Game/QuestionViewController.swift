@@ -7,19 +7,33 @@
 
 import UIKit
 
+enum GameState {
+    case notStarted
+    case correctAnswer
+    case wrongAnswer
+    case finishGame
+}
+
 final class QuestionViewController: UIViewController {
     
     private var timer: Timer?
-    
-    var timerStop = 29
-    
-    var helpAvailibility: [HelpButton:Bool] = [
+    private var timerStop = 29
+
+    private let sound = Sound.shared
+
+    var gameState = GameState.notStarted {
+        didSet {
+            quizManager.gameState = gameState
+        }
+    }
+
+    private var helpAvailibility: [HelpButton:Bool] = [
         HelpButton.fiftyFifty: true,
         HelpButton.audience: true,
         HelpButton.call: true
     ]
     
-    private let quizManager: IQuizManager
+    private var quizManager: IQuizManager
     private let dataManager: IMockService
     
     private var currentQuestionIndex = 0
@@ -51,7 +65,6 @@ final class QuestionViewController: UIViewController {
             guard let self else { return }
             self.checkAnswer(buttonIndex: index)
         }
-        
     }
     
     required init?(coder: NSCoder) {
@@ -62,16 +75,20 @@ final class QuestionViewController: UIViewController {
     
     override func loadView() {
         view = gameView
-        
     }
-    
-    // Temporary timer
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        quizManager.currentIndex = currentQuestionIndex
+        gameView.updateView(with: models[currentQuestionIndex])
+        sound.play(.thinking)
         makeTimer()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        currentQuestionIndex += 1
+        timer?.invalidate()
+    }
 
     private func makeTimer() {
         timer?.invalidate()
@@ -175,29 +192,47 @@ final class QuestionViewController: UIViewController {
             by: buttonIndex,
             with: models[currentQuestionIndex]
         )
-        
-        gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
+        sound.play(.accepted)
         gameView.answersStack.disableAll(except: buttonIndex)
-        DispatchQueue.global().async {[weak self] in
+        sleep(1)
+        self.gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
+        DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            sleep(1)
-            DispatchQueue.main.async {
-                if correctAnswer {
-                    self.quizManager.saveSum(with: self.models[self.currentQuestionIndex])
-                    self.currentQuestionIndex += 1
-
-                    self.gameView.updateView(with: self.models[self.currentQuestionIndex])
-                    self.makeTimer()
+            if correctAnswer {
+                if currentQuestionIndex == 14 {
+                    sound.play(.win)
                 } else {
-                    self.finishGame()
+                    sound.play(.correctAnswer)
                 }
+                self.gameState = .correctAnswer
+            } else {
+                sound.play(.wrongAnswer)
+                self.gameState = .wrongAnswer
             }
+            self.closeQuestion()
         }
     }
 
     // MARK: Selector methods
 
+
     @objc func finishGame() {
-        dismiss(animated: true)
+        sound.play(.win)
+        gameState = .finishGame
+        closeQuestion()
+    }
+
+    func closeQuestion() {
+        sleep(1)
+        var viewControllerToShow: UIViewController
+        if currentQuestionIndex == 0 && gameState == .wrongAnswer {
+            
+            viewControllerToShow = GameResultViewController(quizManager: quizManager)
+        } else {
+            viewControllerToShow = LevelsViewController(quizManager: quizManager)
+        }
+        let nextScreenNavigation = UINavigationController(rootViewController: viewControllerToShow)
+        nextScreenNavigation.modalPresentationStyle = .fullScreen
+        present(nextScreenNavigation, animated: true)
     }
 }

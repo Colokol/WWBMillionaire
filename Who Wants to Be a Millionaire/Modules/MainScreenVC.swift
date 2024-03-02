@@ -13,14 +13,10 @@ final class MainScreenVC: UIViewController {
     let spacing: CGFloat = 12
     let rulesBtnSize: CGFloat = 32
     var bestSumLabelValue: Int = 15000
-    
-    let quizManager = QuizManager()
+
+    var quizManager = QuizManager()
     let mockManager = MockService.shared
-    private lazy var gameViewController = QuestionViewController(
-        quizManager: quizManager,
-        dataManager: mockManager
-    )
-    
+
     //MARK: - UI Elements
     
     private lazy var background: UIImageView = {
@@ -100,7 +96,7 @@ final class MainScreenVC: UIViewController {
     private lazy var bestValueLabel: UILabel = {
         let element = UILabel()
         element.textColor = .white
-        element.text = "$\(bestSumLabelValue)"
+        element.text = String.currencyFormatted(value: bestSumLabelValue)
         element.font = .boldSystemFont(ofSize: 24)
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
@@ -170,10 +166,15 @@ final class MainScreenVC: UIViewController {
         //continue game logic
         print("continue game")
     }
-
+    
     @objc private func newGameBtnTapped() {
-        gameViewController.modalPresentationStyle = .fullScreen
-        present(gameViewController, animated: true)
+        let gameViewController = QuestionViewController(
+            quizManager: quizManager,
+            dataManager: mockManager
+        )
+        let gameNavigationController = UINavigationController(rootViewController: gameViewController)
+        gameNavigationController.modalPresentationStyle = .fullScreen
+        present(gameNavigationController, animated: true)
     }
     
     @objc private func devButtonTapped() {
