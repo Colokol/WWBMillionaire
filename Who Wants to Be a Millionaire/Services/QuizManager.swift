@@ -8,30 +8,37 @@
 import Foundation
 
 protocol IQuizManager {
-    
-    /// Текущая несгораемая сумма
-    var guaranteedSum: Int { get }
-    
-    /// Возвращает сумму выигрыша за вопрос
-    /// - Parameter index: индекс вопроса
-    /// - Returns: сумма выигрыша
-    func getSum(by index: Int) -> Int
-    
+
+    /// Индекс текущего вопроса
+    var currentIndex: Int {get set}
+
+    /// Состояние игры
+    var gameState: GameState {get set}
+
+    /// Сумма для показа на экране результата
+    var amountToShow: Int {get }
+
+    /// Уровень для отражения в таблице результатов
+    var levelToShowInTable: Int { get }
+
+    /// Уровень для отражения на экране результатов
+    var levelToShowInResults: Int { get }
+
+    /// Уровень текущаей несгораемой суммы
+    var guaranteedSumLevel: Int { get }
+
     /// Проверяет верность ответа
     /// - Parameters:
     ///   - index: индекс кнопки нажатой пользователем
     ///   - model: модель данных
     /// - Returns: верность ответа
     func checkAnswer(by index: Int, with model: Question.ViewModel) -> Bool
-    
-    /// Обновляет несгораемую сумму
-    /// - Parameter model: модель данных
-    func saveSum(with model: Question.ViewModel)
 }
 
 final class QuizManager: IQuizManager {
-    
-    private let amounts = [
+
+    let amounts = [
+        0,
         500,
         1000,
         2000,
@@ -48,21 +55,57 @@ final class QuizManager: IQuizManager {
         500000,
         1000000
     ]
-    
-    var guaranteedSum = 0
-    
-    func getSum(by index: Int) -> Int {
-        return amounts[index]
+
+    var gameState = GameState.notStarted
+
+    var currentIndex = 0 {
+        didSet {
+            guaranteedSumLevel = (currentIndex / 5) * 5
+        }
     }
-    
+
+    var amountToShow: Int {
+        if gameState == .finishGame {
+            return amounts[currentIndex]
+        } else {
+            return amounts[guaranteedSumLevel]
+        }
+    }
+
+    var levelToShowInTable: Int {
+        switch gameState {
+        case .correctAnswer:
+            currentIndex + 1
+        case .wrongAnswer:
+            if currentIndex == 0 {
+                0
+            } else {
+                guaranteedSumLevel
+            }
+        case .finishGame:
+            currentIndex
+        default:
+            0
+        }
+    }
+
+    var levelToShowInResults: Int {
+        switch gameState {
+        case .correctAnswer:
+            currentIndex + 1
+        case .wrongAnswer:
+            currentIndex
+        case .finishGame:
+            currentIndex
+        default:
+            -1
+        }
+    }
+
+    var guaranteedSumLevel = 0
+
     func checkAnswer(by index: Int, with model: Question.ViewModel) -> Bool {
         return model.allAnswers.firstIndex(of: model.correctAnswer) == index
     }
-    
-    func saveSum(with model: Question.ViewModel) {
-        guard (model.questionIndex + 1) % 5 == 0 else {
-            return
-        }
-        guaranteedSum = amounts[model.questionIndex]
-    }
+
 }

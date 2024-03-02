@@ -10,10 +10,11 @@ import UIKit
 final class GameResultViewController: UIViewController {
     
     private let spacing: CGFloat = 12
-    
+    private let quizManager: IQuizManager
+
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "background")
+        imageView.image = GameImages.background.gameImage()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -44,7 +45,7 @@ final class GameResultViewController: UIViewController {
 
     private lazy var levelLabel: UILabel = {
         let label = UILabel()
-        label.text = "Level 8"
+        label.text = "Level \(quizManager.levelToShowInResults)"
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .gray
         return label
@@ -64,11 +65,11 @@ final class GameResultViewController: UIViewController {
         imageView.image = UIImage(named: "coin")
         return imageView
     }()
-    
+
     private lazy var scoreLabel: UILabel = {
         let label = UILabel()
-        label.text = "$15,000"
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = String.currencyFormatted(value: quizManager.amountToShow)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         return label
     }()
@@ -89,9 +90,10 @@ final class GameResultViewController: UIViewController {
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(newGameButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var mainScreenbutton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage.mainScreen, for: .normal)
@@ -99,9 +101,23 @@ final class GameResultViewController: UIViewController {
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(mainScreenButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
+    // MARK: Initialization
+
+    init(quizManager: IQuizManager) {
+        self.quizManager = quizManager
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
@@ -151,6 +167,19 @@ final class GameResultViewController: UIViewController {
             
             newGamebutton.heightAnchor.constraint(equalToConstant: view.frame.height / 12)
         ])
+    }
+
+    // MARK: Selector methods
+
+    @objc func newGameButtonTapped() {
+    }
+
+    @objc func mainScreenButtonTapped() {
+        if quizManager.currentIndex == 0 {
+            presentingViewController?.presentingViewController?.dismiss(animated: true)
+        } else {
+            presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        }
     }
 }
 

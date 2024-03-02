@@ -15,7 +15,9 @@ class LevelsViewController: UIViewController, UITableViewDataSource, UITableView
     let amounts = ["$1,000,000", "$500,000", "$250,000", "$100,000", "$50,000", 
                    "$25,000", "$15,000", "$12,500", "$10,000", "$7,500", 
                    "$5,000", "$3,000", "$2,000", "$1,000", "$500"]
-    
+
+    private let quizManager: IQuizManager
+
     // MARK: - UI Elements
     
     private lazy var logoImageView: UIImageView = {
@@ -43,6 +45,17 @@ class LevelsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+
+    // MARK: - Initilization
+
+    init(quizManager: IQuizManager) {
+        self.quizManager = quizManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Life Cycle
     
@@ -52,7 +65,7 @@ class LevelsViewController: UIViewController, UITableViewDataSource, UITableView
         setupLayout()
         addTapGestureCloseView()
     }
-    
+
     // MARK: - Setups
     
     private func setupHierarchy() {
@@ -90,7 +103,15 @@ class LevelsViewController: UIViewController, UITableViewDataSource, UITableView
     //MARK: - Actions
     
     @objc private func handleScreenTap() {
-        
+        if quizManager.gameState != .correctAnswer {
+            let gameResult = GameResultViewController(quizManager: quizManager)
+            gameResult.modalPresentationStyle = .fullScreen
+            let gameNavigationController = UINavigationController(rootViewController: gameResult)
+            gameNavigationController.modalPresentationStyle = .fullScreen
+            present(gameNavigationController, animated: true)
+        } else {
+            dismiss(animated: true)
+        }
     }
     
     // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -103,7 +124,7 @@ class LevelsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "MoneyLevelCell", for: indexPath) as! MoneyLevelCell
         let level = levels[indexPath.row]
         let amount = amounts[indexPath.row]
-        cell.configureCell(level: level, amount: amount)
+        cell.configureCell(level: level, amount: amount, prizeLevel: quizManager.levelToShowInTable)
         return cell
     }
     

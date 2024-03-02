@@ -19,6 +19,7 @@
 		4DA4C9502B914F8700F819BA /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C94B2B914F8700F819BA /* HelpButton.swift */; };
 		4DA4C9522B92236B00F819BA /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9512B92236B00F819BA /* Audio.swift */; };
 		4DA4C9542B92724B00F819BA /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9532B92724B00F819BA /* Sound.swift */; };
+		4DA4C9562B937C1300F819BA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4C9552B937C1300F819BA /* String+Extension.swift */; };
 		564ED1AE2B8DF96500D1A796 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */; };
 		59C4BA9F2B8F8CF6000F8E2F /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */; };
 		59C4BAA22B8F8D17000F8E2F /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BAA12B8F8D17000F8E2F /* MockService.swift */; };
@@ -51,6 +52,7 @@
 		4DA4C94B2B914F8700F819BA /* HelpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
 		4DA4C9512B92236B00F819BA /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		4DA4C9532B92724B00F819BA /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		4DA4C9552B937C1300F819BA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		564ED1AD2B8DF96500D1A796 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		59C4BA9E2B8F8CF6000F8E2F /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		59C4BAA12B8F8D17000F8E2F /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				4DA4C9412B914E8F00F819BA /* UIColor+Extension.swift */,
 				59C4BAA62B8F8D81000F8E2F /* Bundle + Decodable.swift */,
+				4DA4C9552B937C1300F819BA /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				0412D6772B92558E000C9CF8 /* CustomCell.swift in Sources */,
 				59C4BAA72B8F8D81000F8E2F /* Bundle + Decodable.swift in Sources */,
 				0412D6762B92558E000C9CF8 /* LevelsViewController.swift in Sources */,
+				4DA4C9562B937C1300F819BA /* String+Extension.swift in Sources */,
 				4DA4C94D2B914F8700F819BA /* GameView.swift in Sources */,
 				4DA4C94C2B914F8700F819BA /* QuestionViewController.swift in Sources */,
 				CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */,
