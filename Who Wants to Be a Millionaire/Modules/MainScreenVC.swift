@@ -161,15 +161,16 @@ final class MainScreenVC: UIViewController {
     
     //MARK: - @Objc Methods
     @objc private func rulesBtnTapped() {
-        //go to rules screen
-        print("go to rules screen")
+        let rulesVC = RulesViewController()
+        rulesVC.modalPresentationStyle = .fullScreen
+        present(rulesVC, animated: true)
     }
     
     @objc private func continueBtnTapped() {
         //continue game logic
         print("continue game")
     }
-    
+
     @objc private func newGameBtnTapped() {
         gameViewController.modalPresentationStyle = .fullScreen
         present(gameViewController, animated: true)
@@ -221,18 +222,5 @@ private extension MainScreenVC {
            teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 
         ])
-    }
-}
-
-//MARK: - UIBotton Convenience Init
-extension UIButton {
-    convenience init(bgImage: UIImage, name: String, target: Any?, action: Selector) {
-        self.init()
-        self.setBackgroundImage(bgImage, for: .normal)
-        self.setTitle(name, for: .normal)
-        self.setTitleColor(.white, for: .normal)
-        self.titleLabel?.font = .boldSystemFont(ofSize: 24)
-        self.addTarget(target, action: action, for: .touchUpInside)
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
