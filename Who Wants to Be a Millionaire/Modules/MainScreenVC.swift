@@ -13,10 +13,10 @@ final class MainScreenVC: UIViewController {
     let spacing: CGFloat = 12
     let rulesBtnSize: CGFloat = 32
     var bestSumLabelValue: Int = 15000
-
+    
     var quizManager = QuizManager()
     let mockManager = MockService.shared
-
+    
     //MARK: - UI Elements
     
     private lazy var background: UIImageView = {
@@ -26,7 +26,7 @@ final class MainScreenVC: UIViewController {
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
-
+    
     private lazy var rulesButton: UIButton = {
         let element = UIButton(type: .system)
         element.setImage(UIImage(systemName: "questionmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -45,7 +45,7 @@ final class MainScreenVC: UIViewController {
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
-       
+    
     private lazy var subHStackView: UIStackView = {
         let element = UIStackView()
         element.axis = .horizontal
@@ -124,9 +124,7 @@ final class MainScreenVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //!!!: Logic for new game vs continue game UI elements
-//        hideElements()
+        hideElements()
     }
     
     //MARK: - Methods
@@ -146,7 +144,7 @@ final class MainScreenVC: UIViewController {
         mainLogoVStack.addArrangedSubview(mainLogoLabel)
         mainLogoVStack.addArrangedSubview(subBestLabel)
         mainLogoVStack.addArrangedSubview(subHStackView)
-
+        
         subHStackView.addArrangedSubview(coinImageView)
         subHStackView.addArrangedSubview(bestValueLabel)
         
@@ -183,7 +181,7 @@ final class MainScreenVC: UIViewController {
         navigationController.modalPresentationStyle = .pageSheet
         present(navigationController, animated: true, completion: nil)
     }
-
+    
 }
 
 //MARK: - Constraints
@@ -219,9 +217,9 @@ private extension MainScreenVC {
             newGameBtn.bottomAnchor.constraint(equalTo: teamButton.topAnchor, constant: -spacing * 3),
             newGameBtn.heightAnchor.constraint(equalToConstant: view.frame.height / 12),
             
-           teamButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-
+            teamButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            teamButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            
         ])
     }
 }

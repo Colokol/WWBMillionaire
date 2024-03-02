@@ -141,6 +141,7 @@ final class GameResultViewController: UIViewController {
         
         buttonStackView.addArrangedSubview(newGamebutton)
         buttonStackView.addArrangedSubview(mainScreenbutton)
+        newGamebutton.isHidden = true
     }
     
     private func setConstraints() {
