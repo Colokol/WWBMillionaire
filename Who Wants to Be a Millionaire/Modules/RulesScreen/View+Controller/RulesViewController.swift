@@ -24,7 +24,7 @@ class RulesViewController: UIViewController {
     
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "Background")
+        image.image = UIImage(named: "background")
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
