@@ -14,6 +14,13 @@ final class MainScreenVC: UIViewController {
     let rulesBtnSize: CGFloat = 32
     var bestSumLabelValue: Int = 15000
     
+    let quizManager = QuizManager()
+    let mockManager = MockService.shared
+    private lazy var gameViewController = QuestionViewController(
+        quizManager: quizManager,
+        dataManager: mockManager
+    )
+    
     //MARK: - UI Elements
     
     private lazy var background: UIImageView = {
@@ -154,27 +161,20 @@ final class MainScreenVC: UIViewController {
     
     //MARK: - @Objc Methods
     @objc private func rulesBtnTapped() {
-        //go to rules screen
-        print("go to rules screen")
+        let rulesVC = RulesViewController()
+        rulesVC.modalPresentationStyle = .fullScreen
+        present(rulesVC, animated: true)
     }
     
     @objc private func continueBtnTapped() {
         //continue game logic
         print("continue game")
     }
-    
-    let quizManager = QuizManager()
-    let mockManager = MockService.shared
-    private lazy var gameViewController = QuestionViewController(
-        quizManager: quizManager,
-        dataManager: mockManager
-    )
 
     @objc private func newGameBtnTapped() {
         gameViewController.modalPresentationStyle = .fullScreen
         present(gameViewController, animated: true)
     }
-
 }
 
 //MARK: - Constraints
@@ -213,18 +213,5 @@ private extension MainScreenVC {
             teamLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             teamLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-}
-
-//MARK: - UIBotton Convenience Init
-extension UIButton {
-    convenience init(bgImage: UIImage, name: String, target: Any?, action: Selector) {
-        self.init()
-        self.setBackgroundImage(bgImage, for: .normal)
-        self.setTitle(name, for: .normal)
-        self.setTitleColor(.white, for: .normal)
-        self.titleLabel?.font = .boldSystemFont(ofSize: 24)
-        self.addTarget(target, action: action, for: .touchUpInside)
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
