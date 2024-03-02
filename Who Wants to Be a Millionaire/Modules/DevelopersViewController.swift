@@ -41,7 +41,7 @@ class DevelopersViewController: UIViewController {
     lazy var dev1Name = UILabel(name: "🎩Team's Leader - Uladzislau Yatskevich", target: self, action: #selector(labelTapped1))
     lazy var dev2Name = UILabel(name: "🍻Team's Buddy - Alexander Altman", target: self, action: #selector(labelTapped2))
     lazy var dev3Name = UILabel(name: "🙏🏼Team's Apologizer - Vitaliy Molokov", target: self, action: #selector(labelTapped3))
-    lazy var dev4Name = UILabel(name: "🧠Team's Logician - Vesily92", target: self, action: #selector(labelTapped4))
+    lazy var dev4Name = UILabel(name: "🧠Team's Logician - Vasiliy Pronin", target: self, action: #selector(labelTapped4))
     lazy var dev5Name = UILabel(name: "💣Team's Weapon - Nikita Tyschenko", target: self, action: #selector(labelTapped5))
     lazy var dev6Name = UILabel(name: "💐Team's Blossom - Aliya Kolesnikova", target: self, action: #selector(labelTapped6))
     lazy var dev7Name = UILabel(name: "👻Team's Mistery' - Zhaniya Medetkhan", target: self, action: #selector(labelTapped7))
