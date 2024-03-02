@@ -87,6 +87,7 @@ final class QuestionViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         currentQuestionIndex += 1
+        timer?.invalidate()
     }
 
     private func makeTimer() {
