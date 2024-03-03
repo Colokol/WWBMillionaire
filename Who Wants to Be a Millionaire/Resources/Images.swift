@@ -9,7 +9,7 @@ import UIKit
 
 enum GameImages: String {
     // MARK: Assets
-    case background = "Background"
+    case background = "background"
     case regularAnswer = "regularAnswer"
     case correctAnswer = "correctAnswer"
     case wrongAnswer = "wrongAnswer"

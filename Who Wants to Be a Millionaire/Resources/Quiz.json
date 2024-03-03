@@ -3,7 +3,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Music",
-        "question": "Who is the founder and leader of industrial rock band, &#039;Nine Inch Nails&#039;?",
+        "question": "Who is the founder and leader of industrial rock band Nine Inch Nails?",
         "correct_answer": "Trent Reznor",
         "incorrect_answers": [
             "Marilyn Manson",
@@ -111,17 +111,19 @@
         "type": "boolean",
         "difficulty": "medium",
         "category": "Entertainment: Film",
-        "question": "The color of the pills in the Matrix were Blue and Yellow.",
-        "correct_answer": "False",
+        "question": "What color were the pills in the Matrix movie?",
+        "correct_answer": "Blue and Red",
         "incorrect_answers": [
-            "True"
+            "Blue and Yellow",
+            "Green and Orange",
+            "Black and White"
         ]
     },
     {
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Music",
-        "question": "When did The Beatles release the LP &quot;Please Please Me&quot;?",
+        "question": "When did The Beatles release the LP Please Please Me?",
         "correct_answer": "1963",
         "incorrect_answers": [
             "1970",
@@ -133,7 +135,7 @@
         "type": "multiple",
         "difficulty": "hard",
         "category": "Entertainment: Music",
-        "question": "What is the name of the song by Beyonc&eacute; and Alejandro Fern&aacute;ndez released in 2007?",
+        "question": "What is the name of the song by Beyonce and Alejandro Fernandez released in 2007?",
         "correct_answer": "Amor Gitano",
         "incorrect_answers": [
             "La ultima vez",
@@ -169,10 +171,10 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Film",
-        "question": "Who is the main protagonist in, the 1985 film, Back to the Future?",
+        "question": "Who is the main protagonist in the 1985 film Back to the Future?",
         "correct_answer": "Marty McFly",
         "incorrect_answers": [
-            "Emmett &quot;Doc&quot; Brown",
+            "Emmett 'Doc' Brown",
             "Biff Tannen",
             "George McFly"
         ]
