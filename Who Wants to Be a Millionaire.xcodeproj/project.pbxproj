@@ -32,7 +32,6 @@
 		59C4BAA92B8F8DC0000F8E2F /* QuizManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BAA82B8F8DC0000F8E2F /* QuizManager.swift */; };
 		CE5770F82B8C6FAB00670B8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770F72B8C6FAB00670B8A /* AppDelegate.swift */; };
 		CE5770FA2B8C6FAB00670B8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770F92B8C6FAB00670B8A /* SceneDelegate.swift */; };
-		CE5770FC2B8C6FAB00670B8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5770FB2B8C6FAB00670B8A /* MainScreenViewController.swift */; };
 		CE5771012B8C6FB100670B8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5771002B8C6FB100670B8A /* Assets.xcassets */; };
 		CE5771042B8C6FB100670B8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5771022B8C6FB100670B8A /* LaunchScreen.storyboard */; };
 		CE5771132B8C715500670B8A /* otvet-vernyiy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE57710F2B8C715500670B8A /* otvet-vernyiy.mp3 */; };
@@ -70,7 +69,6 @@
 		CE5770F42B8C6FAB00670B8A /* Who Wants to Be a Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Who Wants to Be a Millionaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5770F72B8C6FAB00670B8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5770F92B8C6FAB00670B8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE5770FB2B8C6FAB00670B8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		CE5771002B8C6FB100670B8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE5771032B8C6FB100670B8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE5771052B8C6FB100670B8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 				4DA4C9522B92236B00F819BA /* Audio.swift in Sources */,
 				4DA4C9502B914F8700F819BA /* HelpButton.swift in Sources */,
 				4DA4C94E2B914F8700F819BA /* TimerView.swift in Sources */,
-				CE5770FC2B8C6FAB00670B8A /* MainScreenViewController.swift in Sources */,
 				3790CA4B2B8E7E7E00337C2C /* MainScreenVC.swift in Sources */,
 				59C4BAA22B8F8D17000F8E2F /* MockService.swift in Sources */,
 				4DA4C9422B914E8F00F819BA /* UIColor+Extension.swift in Sources */,

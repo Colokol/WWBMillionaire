@@ -16,11 +16,6 @@ final class GameView: UIView {
 
     let timer = TimerView()
 
-    let coinButton: UIButton = {
-        $0.setBackgroundImage(GameImages.coin.gameImage(), for: .normal)
-        return $0
-    }(UIButton())
-
     private let questionLabel: UITextView = {
         $0.textColor = .white
         $0.backgroundColor = .clear
@@ -103,7 +98,7 @@ final class GameView: UIView {
     }
 
     private func setSubview() {
-        [backgroundImage, timer, questionLabel, answersStack, buttonsStack,coinButton].forEach {
+        [backgroundImage, timer, questionLabel, answersStack, buttonsStack].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -120,12 +115,7 @@ final class GameView: UIView {
             timer.widthAnchor.constraint(equalToConstant: 91),
             timer.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            coinButton.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 16),
-            coinButton.heightAnchor.constraint(equalToConstant: 64),
-            coinButton.widthAnchor.constraint(equalToConstant: 64),
-            coinButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-
-            questionLabel.topAnchor.constraint(equalTo: coinButton.bottomAnchor, constant: 32),
+            questionLabel.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 32),
             questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             questionLabel.heightAnchor.constraint(equalToConstant: 147),

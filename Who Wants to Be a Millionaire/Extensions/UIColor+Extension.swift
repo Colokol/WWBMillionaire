@@ -26,12 +26,11 @@ extension UIColor {
 
     static var whiteGame = UIColor(hex: "FFFFFF")
     static var whiteWithAlpha = UIColor(hex: "FFFFFF").withAlphaComponent(0.1)
+    static var whiteWithAlpha0_5 = UIColor(hex: "FFFFFF").withAlphaComponent(0.5)
     static var orangeGame = UIColor(hex: "FFB340")
     static var orangeWithAlpha = UIColor(hex: "FFA800").withAlphaComponent(0.3)
     static var redGame = UIColor(hex: "FF6231")
     static var redWithAlpha = UIColor(hex: "832203").withAlphaComponent(0.5)
     static var answerVariant = UIColor(hex: "E19B30")
     static var answerVariantWithAlpha = UIColor(hex: "E19B30").withAlphaComponent(0.5)
-
-
 }
