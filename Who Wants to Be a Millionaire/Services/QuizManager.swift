@@ -16,7 +16,7 @@ protocol IQuizManager {
     var gameState: GameState {get set}
 
     /// Сумма для показа на экране результата
-    var amountToShow: Int {get }
+    var amountToShowInResults: Int {get }
 
     /// Уровень для отражения в таблице результатов
     var levelToShowInTable: Int { get }
@@ -26,6 +26,12 @@ protocol IQuizManager {
 
     /// Уровень текущаей несгораемой суммы
     var guaranteedSumLevel: Int { get }
+
+    /// Уровень для отражения в заголовке игры
+    var levelToShowInGame: Int { get }
+
+    /// Сумма для отражения в заголовке игры
+    var amountToShowInGame: Int { get }
 
     /// Проверяет верность ответа
     /// - Parameters:
@@ -64,9 +70,11 @@ final class QuizManager: IQuizManager {
         }
     }
 
-    var amountToShow: Int {
+    var amountToShowInResults: Int {
         if gameState == .finishGame {
             return amounts[currentIndex]
+        } else if gameState == .win {
+            return 1_000_000
         } else {
             return amounts[guaranteedSumLevel]
         }
@@ -74,7 +82,7 @@ final class QuizManager: IQuizManager {
 
     var levelToShowInTable: Int {
         switch gameState {
-        case .correctAnswer:
+        case .correctAnswer, .win:
             currentIndex + 1
         case .wrongAnswer:
             if currentIndex == 0 {
@@ -91,7 +99,7 @@ final class QuizManager: IQuizManager {
 
     var levelToShowInResults: Int {
         switch gameState {
-        case .correctAnswer:
+        case .correctAnswer, .win:
             currentIndex + 1
         case .wrongAnswer:
             currentIndex
@@ -103,6 +111,18 @@ final class QuizManager: IQuizManager {
     }
 
     var guaranteedSumLevel = 0
+
+    var levelToShowInGame: Int {
+        currentIndex + 1
+    }
+
+    var amountToShowInGame: Int {
+        if currentIndex < 15 {
+            amounts[currentIndex + 1]
+        } else {
+            -1
+        }
+    }
 
     func checkAnswer(by index: Int, with model: Question.ViewModel) -> Bool {
         return model.allAnswers.firstIndex(of: model.correctAnswer) == index

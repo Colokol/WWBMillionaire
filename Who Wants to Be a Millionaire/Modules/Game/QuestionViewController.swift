@@ -12,6 +12,7 @@ enum GameState {
     case correctAnswer
     case wrongAnswer
     case finishGame
+    case win
 }
 
 final class QuestionViewController: UIViewController {
@@ -39,8 +40,40 @@ final class QuestionViewController: UIViewController {
     private var currentQuestionIndex = 0
     private var models: [Question.ViewModel] = []
     private var gameView: GameView!
-    
-    
+
+    private lazy var firstTitleLine: UILabel = {
+        $0.font = UIFont.systemFont(ofSize: 16)
+        $0.textColor = .whiteWithAlpha0_5
+        $0.textAlignment = .center
+        return $0
+    }(UILabel())
+
+    private lazy var secondTitleLine: UILabel = {
+        $0.font = UIFont.boldSystemFont(ofSize: 18)
+        $0.textColor = .whiteGame
+        $0.textAlignment = .center
+        return $0
+    }(UILabel())
+
+    lazy var titles:UIStackView = {
+        $0.axis = .vertical
+        $0.addArrangedSubview(firstTitleLine)
+        $0.addArrangedSubview(secondTitleLine)
+        return $0
+    }(UIStackView())
+
+    let backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let image = GameImages.backButton.gameImage()
+        button.setImage(image, for: .normal)
+        return button
+    }()
+
+    let coinButton: UIButton = {
+        $0.setImage(GameImages.coin.gameImage(), for: .normal)
+        return $0
+    }(UIButton())
+
     // MARK: Initialization
     
     init(quizManager: IQuizManager, dataManager: IMockService) {
@@ -54,7 +87,6 @@ final class QuestionViewController: UIViewController {
         }
         
         setupGameView()
-        gameView.coinButton.addTarget(self, action: #selector(finishGame), for: .touchUpInside)
         gameView.onHelpButtonTapped = { [weak self] (_ button: HelpButton) -> () in
             guard let self else { return }
             self.helpAvailibility[button] = false
@@ -72,7 +104,12 @@ final class QuestionViewController: UIViewController {
     }
     
     // MARK: Lifecycle
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigationBarItems()
+    }
+
     override func loadView() {
         view = gameView
     }
@@ -80,9 +117,16 @@ final class QuestionViewController: UIViewController {
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         quizManager.currentIndex = currentQuestionIndex
-        gameView.updateView(with: models[currentQuestionIndex])
-        sound.play(.thinking)
+        if currentQuestionIndex < 15 {
+            gameView.updateView(with: models[currentQuestionIndex])
+        }
+        updateTitleText()
         makeTimer()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        sound.play(.thinking)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,6 +155,8 @@ final class QuestionViewController: UIViewController {
             gameView.timer.seconds = timerStop
         } else {
             gameView.answersStack.disableAll()
+            gameState = .wrongAnswer
+            closeQuestion()
         }
     }
     
@@ -123,7 +169,28 @@ final class QuestionViewController: UIViewController {
             helpAvailibility: helpAvailibility
         )
     }
-    
+
+    private func setupNavigationBarItems() {
+        navigationItem.titleView = titles
+
+        let leftBarButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = leftBarButton
+        leftBarButton.customView?.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        leftBarButton.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+
+        let rightBarButton = UIBarButtonItem(customView: coinButton)
+        navigationItem.rightBarButtonItem = rightBarButton
+        rightBarButton.customView?.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        rightBarButton.customView?.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        coinButton.addTarget(self, action: #selector(coinButtonTapped), for: .touchUpInside)
+    }
+
+    private func updateTitleText() {
+        firstTitleLine.text = "QESTION #\(quizManager.levelToShowInGame)"
+        secondTitleLine.text = String.currencyFormatted(value: quizManager.amountToShowInGame)
+    }
+
     // MARK: Logic methods
 
     private func helpButtonAction(_ button: HelpButton) {
@@ -194,17 +261,18 @@ final class QuestionViewController: UIViewController {
         )
         sound.play(.accepted)
         gameView.answersStack.disableAll(except: buttonIndex)
-        sleep(1)
+        sleep(5)
         self.gameView.answersStack.changeAnswerColor(index: buttonIndex, correctAnswer: correctAnswer)
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             if correctAnswer {
                 if currentQuestionIndex == 14 {
+                    gameState = .win
                     sound.play(.win)
                 } else {
                     sound.play(.correctAnswer)
+                    self.gameState = .correctAnswer
                 }
-                self.gameState = .correctAnswer
             } else {
                 sound.play(.wrongAnswer)
                 self.gameState = .wrongAnswer
@@ -215,8 +283,7 @@ final class QuestionViewController: UIViewController {
 
     // MARK: Selector methods
 
-
-    @objc func finishGame() {
+    @objc func coinButtonTapped() {
         sound.play(.win)
         gameState = .finishGame
         closeQuestion()
@@ -226,7 +293,6 @@ final class QuestionViewController: UIViewController {
         sleep(1)
         var viewControllerToShow: UIViewController
         if currentQuestionIndex == 0 && gameState == .wrongAnswer {
-            
             viewControllerToShow = GameResultViewController(quizManager: quizManager)
         } else {
             viewControllerToShow = LevelsViewController(quizManager: quizManager)
@@ -234,5 +300,10 @@ final class QuestionViewController: UIViewController {
         let nextScreenNavigation = UINavigationController(rootViewController: viewControllerToShow)
         nextScreenNavigation.modalPresentationStyle = .fullScreen
         present(nextScreenNavigation, animated: true)
+    }
+
+    @objc func backButtonTapped() {
+        sound.stop()
+        dismiss(animated: true)
     }
 }

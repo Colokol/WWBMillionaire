@@ -68,7 +68,7 @@ final class GameResultViewController: UIViewController {
 
     private lazy var scoreLabel: UILabel = {
         let label = UILabel()
-        label.text = String.currencyFormatted(value: quizManager.amountToShow)
+        label.text = String.currencyFormatted(value: quizManager.amountToShowInResults)
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         return label
@@ -176,7 +176,7 @@ final class GameResultViewController: UIViewController {
     }
 
     @objc func mainScreenButtonTapped() {
-        if quizManager.currentIndex == 0 {
+        if quizManager.currentIndex == 0 && quizManager.gameState == .wrongAnswer {
             presentingViewController?.presentingViewController?.dismiss(animated: true)
         } else {
             presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
